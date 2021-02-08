@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.19)
 
 project(voro++ C CXX)
 
+option(BUILD_VORO_EXECUTABLE "build voro executable" ON)
+
 SET(
     LIB_VORO_SRC
     ${CMAKE_CURRENT_SOURCE_DIR}/src/c_loops.cc
@@ -26,5 +28,7 @@ SET(
 add_library(voro_lib STATIC ${LIB_VORO_SRC})
 target_include_directories(voro_lib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src)
 
-add_executable(voro++ ${EXEC_SRC})
-target_link_libraries(voro++ PUBLIC voro_lib)
+IF(BUILD_VORO_EXECUTABLE)
+    add_executable(voro++ ${EXEC_SRC})
+    target_link_libraries(voro++ PUBLIC voro_lib)
+endif(BUILD_VORO_EXECUTABLE)
