@@ -23,9 +23,8 @@ SET(
     ${CMAKE_CURRENT_SOURCE_DIR}/src/cmd_line.cc
 )
 
-add_executable(voro++ ${EXEC_SRC})
 add_library(voro_lib STATIC ${LIB_VORO_SRC})
-
-target_link_libraries(voro++ PUBLIC voro_lib)
-
 target_include_directories(voro_lib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src)
+
+add_executable(voro++ ${EXEC_SRC})
+target_link_libraries(voro++ PUBLIC voro_lib)
